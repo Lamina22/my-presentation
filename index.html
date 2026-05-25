@@ -1,59 +1,84 @@
-
-
 <!DOCTYPE html>
-<html lang="en">
-
-
+<html lang="ar" dir="rtl">
 <head>
-   
-    <title>Generer la facture</title>
-
-<link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تطبيق صيدليتي الذكية</title>
+    <link rel="stylesheet" href="style.css">
 </head>
-
-
-
 <body>
-    <div class="div-container">
-<div>
-            <h1>Generer la facture</h1>
-    </div>
-        <div style="padding: 30px;">
-            <input type="text" id="design" placeholder="Designation" >
-            <input type="text" id="quantite" placeholder="Quantite" >
-            <input type="text" id="prixUnitaire" placeholder="Prix unitaire" >
-            <input type="text" id="nomClient" placeholder="Nom du client" >
-            <input type="text" style="color: rgba(0, 0, 0, 0.977);" value="Remise 25%" readonly>
 
-            <button id="btnCalculer" onclick="claculerPT()">Calculer le PT</button>
+    <div class="app-container">
+        
+        <header class="header">
+            <h1>صيدليتي الذكية</h1>
+        </header>
 
-            <input type="text" id="pt" placeholder="PT" readonly>
-            <input type="text" id="ptRemise" placeholder="PT - Remise" readonly>
-
+        <div class="search-section">
+            <div class="search-wrapper">
+                <input type="text" id="search-input" placeholder="ابحث عن اسم الدواء (مثال: بنادول)...">
+            </div>
+            <button class="btn-camera" title="صوّر الدواء أو الروشتة">
+                <svg viewBox="0 0 24 24">
+                    <path d="M4 4h3l2-2h6l2 2h3a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2zm8 3a5 5 0 1 0 0 10 5 5 0 0 0 0-10zm0 2a3 3 0 1 1 0 6 3 3 0 0 1 0-6z"/>
+                </svg>
+            </button>
         </div>
+
+        <main class="results-section">
+            
+            <div class="pharmacy-card">
+                <div class="pharmacy-info">
+                    <h3>الصيدلية المركزية (Centrale)</h3>
+                    <p>📍 تفرغ زينة - وسط العاصمة</p>
+                </div>
+                <div class="pharmacy-status">
+                    <div class="price">120 MRU</div>
+                    <span class="status-badge available">متوفر</span>
+                </div>
+            </div>
+
+            <div class="pharmacy-card">
+                <div class="pharmacy-info">
+                    <h3>صيدلية البرء</h3>
+                    <p>📍 لكصر - قرب المستشفى الوطني</p>
+                </div>
+                <div class="pharmacy-status">
+                    <div class="price">120 MRU</div>
+                    <span class="status-badge available">متوفر</span>
+                </div>
+            </div>
+
+            <div class="pharmacy-card">
+                <div class="pharmacy-info">
+                    <h3>صيدلية الرحمة</h3>
+                    <p>📍 عرفات - كارفور مدريد</p>
+                </div>
+                <div class="pharmacy-status">
+                    <div class="price">250 MRU</div>
+                    <span class="status-badge scarce">شحيح</span>
+                </div>
+            </div>
+
+        </main>
+
+        <nav class="bottom-nav">
+            <button class="nav-item active">
+                <span>🔍</span>
+                الرئيسية
+            </button>
+            <button class="nav-item">
+                <span>📦</span>
+                طلباتي
+            </button>
+            <button class="nav-item">
+                <span>👤</span>
+                الحساب
+            </button>
+        </nav>
+
     </div>
-    <script>
-function claculerPT(){
-    var design = document.getElementById("design").value;
-    var quantite = document.getElementById("quantite").value;
-    var prixUnitaire = document.getElementById("prixUnitaire").value;
-    var nomClient = document.getElementById("nomClient");
 
-    if(isNaN(quantite) || isNaN(prixUnitaire) || !nomClient.value){
-        alert("Veuillez remplir tous les champs correctement!");
-        return;
-    }
-
-    var pt = quantite * prixUnitaire;
-    var ptRemise = pt * (1 - 0.25);
-    var btn = document.getElementById("btnCalculer");
-
-    nomClient.style.backgroundColor = "#8781a3";
-    btn.style.backgroundColor = "#22B14C";
-
-    
-    var message = `Bonjour ${nomClient.value} vous devez payer ${ptRemise} MRU`;
-    alert(message);
-}
-</script>
+    <script src="app.js"></script>
 </body>
+</html>
